@@ -25,7 +25,7 @@ It acts as a **quality control layer**, preventing invalid or noisy data from af
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 ```
 Input Transcript
@@ -41,7 +41,7 @@ Valid / Invalid Output
 
 ---
 
-## 🔍 Validation Rules
+##  Validation Rules
 
 | Type         | Description                | Example            |
 | ------------ | -------------------------- | ------------------ |
@@ -62,7 +62,7 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Usage
+##  Usage
 
 ```python
 from src.validator import validate_transcript
@@ -84,19 +84,6 @@ print(result)
 
 ---
 
-## 🌐 API Usage (Optional)
-
-```bash
-POST /validate
-```
-
-```json
-{
-  "transcript": "Hello world"
-}
-```
-
----
 
 ## 📁 Project Structure
 
@@ -115,8 +102,7 @@ transcript-validator/
 ```
 
 ---
-
-## 🧪 Test Cases
+ Test Cases
 
 | Input         | Output    |
 | ------------- | --------- |
@@ -127,7 +113,7 @@ transcript-validator/
 
 ---
 
-## 🚀 Future Improvements
+##  Future Improvements
 
 * 🔹 ML-based noise detection
 * 🔹 Confidence scoring
@@ -136,11 +122,9 @@ transcript-validator/
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 **Mohit Raj**
-B.Tech Biomedical & Robotics Engineering
-MIT Muzaffarpur
 
 ---
 
