@@ -84,7 +84,8 @@ print(result)
 
 ---
 
-🌐 API Usage 
+## 🌐 API Usage 
+
 from flask import Flask
 from flask_restx import Api, Resource, fields
 
@@ -115,6 +116,47 @@ class Validate(Resource):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+##Create Simple Frontend (HTML Page)
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transcript Validator</title>
+</head>
+<body>
+
+    <h1>Transcript Validator 🚀</h1>
+
+    <textarea id="inputText" rows="5" cols="40" placeholder="Enter transcript..."></textarea>
+    <br><br>
+
+    <button onclick="validateText()">Validate</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        async function validateText() {
+            const text = document.getElementById("inputText").value;
+
+            const response = await fetch("http://127.0.0.1:5000/validate/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ transcript: text })
+            });
+
+            const data = await response.json();
+
+            document.getElementById("result").innerText =
+                "Status: " + data.status + " | Reason: " + data.reason;
+        }
+    </script>
+
+</body>
+</html>
 ## 📁 Project Structure
 
 ```
