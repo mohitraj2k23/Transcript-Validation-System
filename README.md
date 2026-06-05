@@ -119,7 +119,7 @@ if __name__ == "__main__":
 
 
 
-##Create Simple Frontend (HTML Page)
+## Create Simple Frontend (HTML Page)
 <!DOCTYPE html>
 <html>
 <head>
