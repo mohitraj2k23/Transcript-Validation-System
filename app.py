@@ -1,25 +1,30 @@
-from flask import Flask, request, jsonify
+from flask import Flask
+from flask_restx import Api, Resource, fields
 
 app = Flask(__name__)
+api = Api(app, title="Transcript Validator API", version="1.0")
 
-@app.route("/")
-def home():
-    return "Transcript Validator API is running 🚀"
+ns = api.namespace("validate", description="Validation operations")
 
-@app.route("/validate", methods=["POST"])
-def validate():
-    data = request.get_json()
-    text = data.get("transcript", "")
+input_model = api.model("Input", {
+    "transcript": fields.String(required=True, description="Input text")
+})
 
-    # Simple validation logic
-    if text.strip() == "":
-        result = {"status": "Invalid", "reason": "Empty transcript"}
-    elif len(set(text)) == 1:
-        result = {"status": "Invalid", "reason": "Noise-only text"}
-    else:
-        result = {"status": "Valid", "reason": "Looks good"}
+@ns.route("/")
+class Validate(Resource):
+    @ns.expect(input_model)
+    def post(self):
+        data = api.payload
+        text = data.get("transcript", "")
 
-    return jsonify(result)
+        if text.strip() == "":
+            result = {"status": "Invalid", "reason": "Empty transcript"}
+        elif len(set(text)) == 1:
+            result = {"status": "Invalid", "reason": "Noise-only text"}
+        else:
+            result = {"status": "Valid", "reason": "Looks good"}
+
+        return result
 
 if __name__ == "__main__":
     app.run(debug=True)
